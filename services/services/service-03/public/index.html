@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atelier North — Service 04 / Follow-up AI</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Space+Mono&display=swap');
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#e7e2d8;color:#171815;font-family:"DM Sans",sans-serif}
+nav{height:72px;padding:0 4vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #17181522;background:#e7e2d8;position:sticky;top:0;z-index:20}.logo{font-size:12px;letter-spacing:.22em;font-weight:600}.navtag{font:10px "Space Mono";opacity:.55}
+.hero{min-height:88vh;padding:8vw 6vw 5vw;display:grid;grid-template-columns:1fr .8fr;gap:8vw;align-items:center}.eyebrow{font:10px "Space Mono";letter-spacing:.18em;opacity:.55}.hero h1{font-size:clamp(65px,10vw,155px);line-height:.8;letter-spacing:-.08em;font-weight:500;margin:25px 0 35px}.hero h1 span{font-style:italic}.hero p{max-width:560px;font-size:17px;line-height:1.7;color:#66645e}.heroVisual{height:560px;position:relative;display:grid;place-items:center}.orbit{width:430px;height:430px;border:1px solid #17181533;border-radius:50%;position:relative;animation:rot 24s linear infinite}.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid #1718151c;border-radius:50%;inset:45px}.orbit:after{inset:95px}@keyframes rot{to{transform:rotate(360deg)}}.core{position:absolute;inset:135px;border-radius:50%;background:#171815;color:#e7e2d8;display:grid;place-items:center;text-align:center;box-shadow:0 25px 70px #17181525}.core b{font-size:12px;letter-spacing:.15em}.node{position:absolute;width:76px;height:76px;border-radius:18px;background:#f5f1e8;border:1px solid #17181522;display:grid;place-items:center;font:9px "Space Mono";text-align:center;box-shadow:0 15px 30px #17181512}.n1{top:-22px;left:50%;transform:translateX(-50%)}.n2{right:-20px;top:50%;transform:translateY(-50%)}.n3{bottom:-22px;left:50%;transform:translateX(-50%)}.n4{left:-20px;top:50%;transform:translateY(-50%)}
+.experience{background:#171815;color:#eee9df;padding:7vw 5vw}.expTop{display:flex;justify-content:space-between;align-items:end;margin-bottom:35px}.expTop h2{font-size:clamp(45px,7vw,100px);line-height:.85;letter-spacing:-.07em;font-weight:500;margin:0}.expTop p{max-width:300px;color:#85857f;font-size:11px;line-height:1.7}.workspace{display:grid;grid-template-columns:310px 1fr 330px;min-height:720px;border:1px solid #ffffff16;border-radius:26px;overflow:hidden;background:#101210}.panel{padding:23px;border-right:1px solid #ffffff12}.panel:last-child{border-right:0;border-left:1px solid #ffffff12}.panelLabel{font:9px "Space Mono";letter-spacing:.14em;color:#777c76;margin-bottom:20px}.leadCard{padding:17px;border:1px solid #ffffff14;border-radius:18px;background:#151816;margin-bottom:10px;cursor:pointer;transition:.25s}.leadCard:hover,.leadCard.active{background:#20241f;border-color:#ffffff2b;transform:translateX(3px)}.leadCard strong{font-size:13px}.leadCard small{display:block;color:#777d77;font-size:9px;margin-top:5px}.badge{display:inline-block;margin-top:12px;font:8px "Space Mono";padding:5px 7px;border-radius:99px;background:#cbd8c8;color:#182018}.conversation{padding:26px;display:flex;flex-direction:column}.person{display:flex;justify-content:space-between;align-items:center;padding-bottom:20px;border-bottom:1px solid #ffffff12}.person b{font-size:15px}.person span{font:9px "Space Mono";color:#747a73}.timeline{flex:1;padding:22px 5px;overflow:auto}.event{display:grid;grid-template-columns:90px 1fr;gap:15px;margin-bottom:25px}.event time{font:8px "Space Mono";color:#676e68;padding-top:5px}.eventBody{padding:14px;border-radius:15px;background:#151916;border:1px solid #ffffff0d;font-size:10px;line-height:1.6;color:#aaa}.eventBody b{color:#eee;display:block;margin-bottom:5px}.aiDraft{background:#d9e5d3;color:#172016;border-radius:17px;padding:18px;font-size:11px;line-height:1.7;margin-bottom:12px}.aiDraft .label{font:8px "Space Mono";opacity:.55;margin-bottom:8px}.actionRow{display:flex;gap:7px}.action{border:1px solid #ffffff20;background:#1c211d;color:#eee;border-radius:99px;padding:10px 12px;font-size:9px;cursor:pointer}.action.primary{background:#e9e4d9;color:#171815;border:0}.composer{display:flex;gap:8px}.composer input{flex:1;background:#151816;border:1px solid #ffffff17;color:#eee;border-radius:99px;padding:12px 14px;font-size:10px;outline:0}.composer button{border:0;border-radius:50%;width:40px;background:#d9e5d3;cursor:pointer}.metric{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid #ffffff10;font-size:10px;color:#999}.metric b{color:#eee}.run{width:100%;padding:15px;border:0;border-radius:99px;background:#d9e5d3;color:#172016;font:10px "Space Mono";cursor:pointer;margin-top:18px;transition:.25s}.run:hover{transform:translateY(-2px);box-shadow:0 10px 30px #0005}.thinking{display:none;font:8px "Space Mono";color:#8d948c;margin-top:10px}.thinking.on{display:block}.steps{margin-top:20px}.step{display:flex;align-items:center;gap:10px;margin:12px 0;font-size:9px;color:#777d77}.step i{width:8px;height:8px;border:1px solid #687067;border-radius:50%}.step.done{color:#d9e5d3}.step.done i{background:#d9e5d3;border-color:#d9e5d3}.step.active i{box-shadow:0 0 0 5px #d9e5d31a;animation:pulse .8s infinite}@keyframes pulse{50%{opacity:.3}}
+.section{padding:10vw 7vw;border-top:1px solid #17181522}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#17181522}.tile{background:#e7e2d8;padding:30px;min-height:230px}.tile span{font:9px "Space Mono";opacity:.45}.tile h3{font-size:26px;margin:65px 0 10px}.tile p{font-size:11px;line-height:1.7;color:#77746e}
+.cta{text-align:center;padding:12vw 7vw;background:#171815;color:#eee9df}.cta h2{font-size:clamp(55px,9vw,135px);line-height:.83;letter-spacing:-.075em;font-weight:500;margin:0 0 45px}.cta a{display:inline-block;border:1px solid #eee9df;border-radius:99px;padding:16px 22px;font:10px "Space Mono";color:#eee9df}
+footer{padding:25px 6vw;background:#171815;color:#646862;border-top:1px solid #ffffff13;font:9px "Space Mono";display:flex;justify-content:space-between}
+.field{width:100%;margin-top:6px;background:#151816;border:1px solid #ffffff17;color:#eee;border-radius:11px;padding:11px 12px;font:10px "DM Sans";outline:0}.field:focus{border-color:#d9e5d377}.area{min-height:78px;resize:vertical}.scheduleGrid{display:grid;gap:8px;color:#9a9f98;font-size:9px}.scheduleGrid label{display:flex;gap:7px;align-items:center}.scheduleGrid input{accent-color:#d9e5d3}.scheduleGrid+ .field{}select.field{appearance:auto}\n@media(max-width:1050px){.workspace{grid-template-columns:240px 1fr}.panel:last-child{grid-column:1/-1;border-left:0;border-top:1px solid #ffffff12}.hero{grid-template-columns:1fr}.heroVisual{height:480px}.grid{grid-template-columns:1fr}}
+@media(max-width:700px){.workspace{grid-template-columns:1fr}.panel{border-right:0;border-bottom:1px solid #ffffff12}.heroVisual{transform:scale(.8)}.expTop{display:block}.expTop p{margin-top:20px}}
+</style>
+</head>
+<body>
+<nav><div class="logo">ATELIER NORTH</div><div class="navtag">04 / AUTOMATION</div></nav>
+<section class="hero">
+<div><div class="eyebrow">04 / AI FOLLOW-UP SYSTEMS</div><h1>Don't chase<br>the lead.<br><span>Let AI.</span></h1><p>Imagine every enquiry being understood, followed up and moved forward without your team remembering who needs a message next.</p></div>
+<div class="heroVisual"><div class="orbit"><div class="node n1">NEW<br>LEAD</div><div class="node n2">UNDER-<br>STAND</div><div class="node n3">FOLLOW<br>UP</div><div class="node n4">CONVERT</div><div class="core"><b>NORTH<br>FLOW</b></div></div></div>
+</section>
+
+<section class="experience">
+<div class="expTop"><h2>Run the<br>follow-up.</h2><p>This is an interactive AI follow-up workspace. Choose a lead, tell the AI what you want, then run the workflow.</p></div>
+<div class="workspace">
+<aside class="panel">
+<div class="panelLabel">NEW FOLLOW-UP</div>
+<div style="display:grid;gap:10px">
+<label style="font-size:9px;color:#777c76">RECIPIENT NAME<input id="recipientName" class="field" placeholder="e.g. Maya"></label>
+<label style="font-size:9px;color:#777c76">EMAIL ADDRESS<input id="recipientEmail" class="field" type="email" placeholder="name@company.com"></label>
+<label style="font-size:9px;color:#777c76">COMPANY / BUSINESS<input id="recipientCompany" class="field" placeholder="Optional"></label>
+<label style="font-size:9px;color:#777c76">WHAT HAPPENED?<textarea id="recipientContext" class="field area" placeholder="e.g. They asked for pricing last week but haven't replied."></textarea></label>
+</div>
+<div class="panelLabel" style="margin-top:25px">SEND SCHEDULE</div>
+<div class="scheduleGrid">
+<label><input type="radio" name="schedule" value="now" checked> Send now</label>
+<label><input type="radio" name="schedule" value="later"> Choose date & time</label>
+</div>
+<input id="sendAt" class="field" type="datetime-local" style="display:none;margin-top:9px">
+<div class="panelLabel" style="margin-top:22px">FOLLOW-UP CADENCE</div>
+<select id="cadence" class="field">
+<option value="once">One-time follow-up</option>
+<option value="2days">Continue every 2 days</option>
+<option value="custom">Custom interval</option>
+</select>
+<div id="customDaysWrap" style="display:none;margin-top:9px">
+<input id="customDays" class="field" type="number" min="1" max="30" value="3" placeholder="Days between follow-ups">
+</div>
+<label id="maxWrap" style="display:none;font-size:9px;color:#777c76;margin-top:10px">NUMBER OF FOLLOW-UPS<input id="maxFollowups" class="field" type="number" min="1" max="10" value="3"></label>
+<div class="leadCard" style="margin-top:14px;cursor:default"><strong>Any recipient.</strong><small>Enter a real email and North AI will build the follow-up around your context.</small></div>
+</aside>
+
+<main class="conversation">
+<div class="person"><b id="leadName">New recipient</b><span id="leadContext">READY</span></div>
+<div class="timeline" id="timeline">
+<div class="event"><time>START</time><div class="eventBody"><b>Tell North AI what happened</b>Enter any recipient, their email and the context of the conversation. You can schedule the first message and choose whether North AI continues the follow-up.</div></div>
+<div class="event"><time>AI</time><div class="eventBody"><b>Personalized, not templated</b>North AI will generate a message based on the specific situation and your instruction.</div></div>
+<div class="event"><time>AUTOMATION</time><div class="eventBody"><b>Runs on schedule</b>For scheduled or recurring follow-ups, the backend creates the delivery schedule instead of requiring you to keep the page open.</div></div>
+</div>
+<div class="composer"><input id="instruction" placeholder="Tell the AI what you want… e.g. “friendly but confident”"><button id="ask">↑</button></div>
+</main>
+
+<aside class="panel">
+<div class="panelLabel">NORTH AI / AUTOMATION</div>
+<div class="aiDraft" id="draft"><div class="label">READY</div>Select a lead and ask North AI to prepare the next follow-up.</div>
+<div class="actionRow"><button class="action primary" id="sendNow">Send follow-up</button><button class="action" id="edit">Refine</button></div>
+<button class="run" id="run">CREATE + SCHEDULE FOLLOW-UP ↗</button>
+<div class="thinking" id="thinking">NORTH AI IS WORKING…</div>
+<div class="steps"><div class="step" id="s1"><i></i>Understand lead</div><div class="step" id="s2"><i></i>Generate follow-up</div><div class="step" id="s3"><i></i>Choose next action</div><div class="step" id="s4"><i></i>Prepare CRM update</div></div>
+<div style="margin-top:35px"><div class="metric"><span>DELIVERY</span><b id="deliveryStatus">READY</b></div><div class="metric"><span>CADENCE</span><b id="cadenceStatus">ONE-TIME</b></div><div class="metric"><span>RECIPIENT</span><b id="recipientStatus">—</b></div></div>
+</aside>
+</div>
+</section>
+
+<section class="section"><div class="grid"><div class="tile"><span>01</span><h3>Listen</h3><p>AI reads the conversation, timing and context before deciding what the lead actually needs.</p></div><div class="tile"><span>02</span><h3>Respond</h3><p>Every follow-up is generated around the specific person, not copied from a generic template.</p></div><div class="tile"><span>03</span><h3>Move</h3><p>The system can recommend the next action and prepare the workflow for your team.</p></div></div></section>
+<section class="cta"><h2>What if every<br>lead got the<br><em>right follow-up?</em></h2><a href="mailto:riyaz.csee@gmail.com?subject=Atelier%20North%20-%20AI%20Automation">Build the system ↗</a></section>
+<footer><span>ATELIER NORTH · HUMAN EXPERIENCES / INTELLIGENT TECHNOLOGY</span><span>04 — AI FOLLOW-UP SYSTEMS</span></footer>
+
+<script>
+let selected={name:"",email:"",company:"",context:""};
+const history=[];
+const $=id=>document.getElementById(id);
+const draft=$('draft'),thinking=$('thinking');
+function setDraft(text,label="NORTH AI DRAFT"){draft.innerHTML='<div class="label">'+label+'</div>'+String(text).replace(/\n/g,'<br>')}
+function readRecipient(){
+ selected={name:$('recipientName').value.trim(),email:$('recipientEmail').value.trim(),company:$('recipientCompany').value.trim(),context:$('recipientContext').value.trim()};
+ $('leadName').textContent=selected.name||"New recipient"; $('recipientStatus').textContent=selected.email||"—";
+ $('leadContext').textContent=selected.email?"RECIPIENT READY":"READY";
+ return selected;
+}
+function validateRecipient(){
+ readRecipient();
+ if(!selected.name||!selected.email||!selected.context){setDraft("Add the recipient name, a valid email and what happened before creating the follow-up.","NEEDS DETAILS");return false}
+ if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(selected.email)){setDraft("Please enter a valid email address.","INVALID EMAIL");return false}
+ return true;
+}
+async function callAI(instruction){
+ thinking.classList.add('on');
+ const res=await fetch('http://localhost:3003/api/followup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({lead:selected,instruction,history})});
+ const data=await res.json();thinking.classList.remove('on');
+ if(!res.ok) throw new Error(data.error||"AI unavailable");
+ history.push({instruction,answer:data.answer});return data.answer;
+}
+async function scheduleFollowup(message){
+ const scheduleType=document.querySelector('input[name="schedule"]:checked').value;
+ const cadence=$('cadence').value;
+ let intervalDays=null,maxFollowups=1;
+ if(cadence==="2days"){intervalDays=2;maxFollowups=3}
+ if(cadence==="custom"){intervalDays=Math.max(1,Number($('customDays').value||3));maxFollowups=Math.max(1,Number($('maxFollowups').value||3))}
+ const payload={lead:selected,message,scheduleType,sendAt:$('sendAt').value||null,intervalDays,maxFollowups};
+ const res=await fetch('http://localhost:3003/api/schedule-followup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+ const data=await res.json();if(!res.ok)throw new Error(data.error||"Scheduling failed");return data;
+}
+$('ask').onclick=async()=>{
+ if(!validateRecipient())return;
+ const q=$('instruction').value.trim()||"Write a friendly, concise follow-up based on the context.";
+ try{setDraft("Thinking…","NORTH AI");const a=await callAI(q);setDraft(a);$('instruction').value=""}catch(e){setDraft("I couldn't reach the AI server. Check your API key and server.","ERROR")}
+};
+document.querySelectorAll('input[name="schedule"]').forEach(r=>r.onchange=()=>{
+ $('sendAt').style.display=r.value==="later"&&r.checked?"block":"none";
+});
+$('cadence').onchange=()=>{
+ const recurring=$('cadence').value!=="once";
+ $('customDaysWrap').style.display=$('cadence').value==="custom"?"block":"none";
+ $('maxWrap').style.display=recurring?"block":"none";
+ $('cadenceStatus').textContent=$('cadence').value==="2days"?"EVERY 2 DAYS":$('cadence').value==="custom"?"CUSTOM":"ONE-TIME";
+};
+$('run').onclick=async()=>{
+ if(!validateRecipient())return;
+ const btn=$('run');btn.disabled=true;
+ ["s1","s2","s3","s4"].forEach(x=>$(x).classList.remove("done","active"));
+ try{
+  $('s1').classList.add("active");await new Promise(r=>setTimeout(r,400));$('s1').classList.remove("active");$('s1').classList.add("done");
+  $('s2').classList.add("active");
+  const a=await callAI("Create the best personalized follow-up message for this recipient. Return only the ready-to-send message. Do not include analysis.");
+  $('s2').classList.remove("active");$('s2').classList.add("done");setDraft(a);
+  $('s3').classList.add("active");await new Promise(r=>setTimeout(r,400));$('s3').classList.remove("active");$('s3').classList.add("done");
+  $('s4').classList.add("active");
+  const result=await scheduleFollowup(a);
+  $('s4').classList.remove("active");$('s4').classList.add("done");
+  $('deliveryStatus').textContent=result.status==="sent"?"SENT":"SCHEDULED";
+  setDraft(result.message||("Follow-up "+result.status+" for "+selected.email),"WORKFLOW COMPLETE");
+ }catch(e){setDraft(e.message||"Workflow failed. Check email/scheduler configuration.","ERROR")}
+ btn.disabled=false;
+};
+$('sendNow').onclick=async()=>{
+ if(!validateRecipient())return;
+ const text=draft.innerText.replace(/^SENT · WORKFLOW COMPLETE/,"").trim();
+ if(!text||text.startsWith("Add the recipient")){setDraft("Create an AI follow-up first.","NEEDS DRAFT");return}
+ try{const r=await scheduleFollowup(text);$('deliveryStatus').textContent=r.status.toUpperCase();setDraft(r.message||"Follow-up processed.","SENT / SCHEDULED")}catch(e){setDraft(e.message,"ERROR")}
+};
+$('edit').onclick=()=>{$('instruction').focus();$('instruction').value="Make the current draft warmer, concise and more conversational."};
+</script>
+</body></html>

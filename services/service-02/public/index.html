@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atelier North — North AI</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap');
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#090b0b;color:#f3f0e8;font-family:"DM Sans",sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:-30%;background:radial-gradient(circle at 65% 35%,#8aa89a1c,transparent 25%),radial-gradient(circle at 30% 70%,#5f77701a,transparent 25%);animation:drift 14s ease-in-out infinite alternate;pointer-events:none}@keyframes drift{to{transform:translate(3%,-2%) scale(1.05)}}
+nav{height:76px;padding:0 5vw;border-bottom:1px solid #ffffff16;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#090b0bd9;backdrop-filter:blur(20px);z-index:20}.logo{font-size:12px;letter-spacing:.2em;font-weight:600}.back{font-size:11px;color:#999}
+.hero{min-height:calc(100vh - 76px);display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:6vw;padding:7vw}.k{font-size:10px;letter-spacing:.25em;color:#98a69e;text-transform:uppercase}.hero h1{font-size:clamp(62px,9vw,145px);line-height:.82;letter-spacing:-.075em;font-weight:500;margin:28px 0 35px}.serif{font-family:"Playfair Display";font-style:italic}.lead{max-width:570px;color:#aaa9a3;line-height:1.7;font-size:17px}
+.orbStage{height:650px;display:grid;place-items:center;position:relative}.orb{width:380px;height:380px;border-radius:50%;background:radial-gradient(circle at 34% 27%,#fff,#b9d0c6 4%,#536860 22%,#17221f 52%,#090b0b 72%);box-shadow:0 0 70px #9bb9ac25,0 50px 120px #000;animation:breathe 5s ease-in-out infinite;position:relative}.orb:before,.orb:after{content:"";position:absolute;border:1px solid #b7cec51f;border-radius:50%;inset:-35px;animation:spin 12s linear infinite}.orb:after{inset:-75px;border-color:#b7cec512;animation-direction:reverse;animation-duration:18s}@keyframes breathe{50%{transform:scale(1.035) translateY(-10px)}}@keyframes spin{to{transform:rotate(360deg)}}.orbCore{position:absolute;inset:25%;border-radius:50%;display:grid;place-items:center;text-align:center;background:#0c1210aa;backdrop-filter:blur(10px);border:1px solid #ffffff18}.orbCore span{font-size:9px;letter-spacing:.18em;color:#9eb0a8}.status{position:absolute;bottom:10%;font-size:10px;color:#818a85;letter-spacing:.12em}
+.section{padding:10vw 7vw;border-top:1px solid #ffffff16}.head{display:flex;justify-content:space-between;gap:30px;margin-bottom:65px}.section h2{font-size:clamp(46px,6vw,92px);line-height:.9;letter-spacing:-.06em;font-weight:500;margin:0}.muted{max-width:360px;color:#858883;font-size:12px;line-height:1.8}
+.chatArea{min-height:720px;border:1px solid #ffffff18;border-radius:32px;background:#0e1110;display:grid;grid-template-columns:280px 1fr;overflow:hidden;box-shadow:0 50px 120px #0005}.side{border-right:1px solid #ffffff15;padding:25px}.sideTitle{font-size:11px;letter-spacing:.18em;margin-bottom:30px}.prompt{border:1px solid #ffffff13;border-radius:14px;padding:13px;margin:8px 0;color:#9d9f99;font-size:10px;cursor:pointer;transition:.25s}.prompt:hover{background:#ffffff08;color:#eee}.chat{display:flex;flex-direction:column;min-width:0}.chatHead{padding:22px 25px;border-bottom:1px solid #ffffff15;display:flex;align-items:center;gap:12px}.dot{width:9px;height:9px;border-radius:50%;background:#9fc1b2;box-shadow:0 0 14px #9fc1b2}.chatHead b{font-size:12px}.chatHead span{font-size:9px;color:#7d837f;margin-left:auto}.messages{flex:1;padding:28px;overflow:auto;display:flex;flex-direction:column;gap:14px;min-height:470px}.msg{max-width:78%;padding:15px 17px;border-radius:18px;font-size:12px;line-height:1.65;animation:in .35s ease;white-space:pre-wrap}.ai{background:#161d19;border:1px solid #ffffff10;align-self:flex-start;color:#d4d7d2}.user{background:#e8e4db;color:#111;align-self:flex-end}@keyframes in{from{opacity:0;transform:translateY(8px)}}.typing{display:none;color:#89938d;font-size:10px;padding-left:4px}.typing.on{display:block}.chips{display:flex;flex-wrap:wrap;gap:7px;padding:0 25px 13px}.chip{border:1px solid #ffffff18;border-radius:99px;background:transparent;color:#aaa;font-size:9px;padding:9px 12px;cursor:pointer}.chip:hover{background:#fff;color:#111}.composer{display:flex;gap:9px;padding:18px 25px;border-top:1px solid #ffffff15}.composer input{flex:1;background:#151816;border:1px solid #ffffff17;border-radius:99px;padding:14px 17px;color:#eee;outline:0;font:inherit;font-size:11px}.composer button{width:48px;border:0;border-radius:50%;background:#e8e4db;color:#111;cursor:pointer;font-size:15px}
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#ffffff15}.p{background:#0d100f;padding:30px;min-height:250px}.p span{font-size:10px;color:#707773}.p h3{font-size:25px;margin:75px 0 10px}.p p{font-size:11px;line-height:1.7;color:#858984}
+.cta{text-align:center;padding:12vw 7vw}.cta h2{font-size:clamp(55px,9vw,135px);line-height:.84;letter-spacing:-.075em;font-weight:500;margin:0 0 45px}.cta a{display:inline-flex;border:1px solid #eee9df;padding:16px 23px;border-radius:99px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;transition:.3s}.cta a:hover{background:#eee9df;color:#111}
+footer{padding:25px 7vw 40px;border-top:1px solid #ffffff16;color:#666;font-size:10px;letter-spacing:.12em;display:flex;justify-content:space-between}
+@media(max-width:850px){.hero{grid-template-columns:1fr;padding-top:14vw}.orbStage{height:510px}.orb{width:300px;height:300px}.chatArea{grid-template-columns:1fr}.side{display:none}.head{display:block}.muted{margin-top:22px}.principles{grid-template-columns:1fr}.messages{min-height:420px}}
+</style>
+</head>
+<body>
+<nav><div class="logo">ATELIER NORTH</div><a class="back" href="index.html#work">← BACK TO WORK</a></nav>
+<section class="hero">
+<div><div class="k">03 / AI Experiences</div><h1>Don't read<br>about AI.<br><span class="serif">Talk to it.</span></h1><p class="lead">North AI is now connected to a real language model. Ask it something unexpected — the answer is generated from the conversation, not a list of hard-coded replies.</p></div>
+<div class="orbStage"><div class="orb"><div class="orbCore"><span>NORTH<br>INTELLIGENCE</span></div></div><div class="status">● LIVE AI · API CONNECTED</div></div>
+</section>
+<section class="section" id="experience">
+<div class="head"><h2>Meet<br><span class="serif">North AI.</span></h2><div class="muted">Ask a real question. North AI receives the conversation history and generates a new answer for the current context.</div></div>
+<div class="chatArea">
+<aside class="side"><div class="sideTitle">TRY A PROMPT</div><div class="prompt">What can Atelier North build?</div><div class="prompt">Give me a website idea for a salon.</div><div class="prompt">How could AI help a small business?</div><div class="prompt">Turn my startup idea into a product.</div></aside>
+<div class="chat"><div class="chatHead"><i class="dot"></i><b>North AI</b><span id="state">READY</span></div>
+<div class="messages" id="messages"><div class="msg ai">Hi. I'm North AI. Ask me anything about digital products, websites, apps, AI, automation, or your own idea. I'll respond from the live AI model rather than a fixed answer list.</div></div><div class="typing" id="typing">North AI is thinking…</div>
+<div class="chips"><button class="chip">What makes a website feel premium?</button><button class="chip">Suggest an app idea</button><button class="chip">Explain AI simply</button></div>
+<div class="composer"><input id="input" autocomplete="off" placeholder="Ask North AI anything…"><button id="send">↑</button></div></div></div>
+</section>
+<section class="section"><div class="head"><h2>AI should feel<br><span class="serif">intentional.</span></h2><div class="muted">The intelligence is only half the work. We shape the conversation, interface, context and moments around it.</div></div>
+<div class="principles"><div class="p"><span>01</span><h3>Useful</h3><p>Every AI moment starts with a real job to be done, not a novelty.</p></div><div class="p"><span>02</span><h3>Contextual</h3><p>The system receives previous messages so the conversation can build naturally.</p></div><div class="p"><span>03</span><h3>Human</h3><p>Clear language, thoughtful feedback and graceful boundaries make the technology approachable.</p></div></div></section>
+<section class="cta"><div class="k">03 / Build with intelligence</div><h2>What could AI<br><span class="serif">do for you?</span></h2><a href="mailto:riyaz.csee@gmail.com?subject=Atelier%20North%20-%20AI%20Experience">Talk to Atelier North ↗</a></section>
+<footer><span>ATELIER NORTH · HUMAN EXPERIENCES / INTELLIGENT TECHNOLOGY</span><span>03 — AI EXPERIENCES</span></footer>
+<script>
+const messages=document.getElementById('messages'),input=document.getElementById('input'),typing=document.getElementById('typing'),state=document.getElementById('state');
+const history=[];
+function add(text,who){const d=document.createElement('div');d.className='msg '+who;d.textContent=text;messages.appendChild(d);messages.scrollTop=messages.scrollHeight}
+async function send(){
+ const q=input.value.trim(); if(!q)return;
+ add(q,'user'); input.value=''; history.push({role:'user',content:q});
+ typing.classList.add('on'); state.textContent='THINKING…';
+ try{
+ const r = await fetch('http://localhost:3000/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:history})});
+  const data=await r.json(); if(!r.ok) throw new Error(data.error||'Request failed');
+  add(data.answer,'ai'); history.push({role:'assistant',content:data.answer}); state.textContent='READY';
+ }catch(e){add("I couldn't reach the AI server. Check that the local server is running and your API key is configured in .env.",'ai');state.textContent='OFFLINE';}
+ typing.classList.remove('on');
+}
+document.getElementById('send').onclick=send;input.addEventListener('keydown',e=>{if(e.key==='Enter')send()});
+document.querySelectorAll('.prompt,.chip').forEach(b=>b.onclick=()=>{input.value=b.textContent;send()});
+</script>
+</body></html>

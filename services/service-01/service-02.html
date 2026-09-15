@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atelier North — Service 02 / App Experience</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap');
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#11110f;color:#f5f1e9;font-family:"DM Sans",sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}
+nav{height:76px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff18;position:sticky;top:0;background:#11110fe8;backdrop-filter:blur(18px);z-index:20}.logo{font-size:12px;font-weight:600;letter-spacing:.2em}.back{font-size:11px;color:#aaa}
+.hero{min-height:calc(100vh - 76px);display:grid;grid-template-columns:1fr 1fr;gap:4vw;padding:8vw 7vw;align-items:center}.k{font-size:10px;letter-spacing:.24em;color:#aaa;text-transform:uppercase}.hero h1{font-size:clamp(62px,9vw,145px);line-height:.82;letter-spacing:-.075em;font-weight:500;margin:28px 0 35px}.serif{font-family:"Playfair Display",serif;font-style:italic}.lead{font-size:17px;line-height:1.7;color:#aaa;max-width:550px}
+.phoneStage{height:670px;position:relative;display:grid;place-items:center}.glow{position:absolute;width:440px;height:440px;border-radius:50%;background:#d99a62;filter:blur(120px);opacity:.18}.phone{width:310px;height:625px;border:7px solid #2d302c;background:#070807;border-radius:42px;padding:8px;position:relative;z-index:2;box-shadow:0 50px 120px #000;transform:rotate(4deg);transition:.8s}.phone:hover{transform:rotate(0) translateY(-18px)}.notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:100px;height:25px;background:#050505;border-radius:20px;z-index:4}.screen{height:100%;border-radius:32px;overflow:hidden;background:#f0ece4;color:#171814;padding:30px 18px 18px}.appTop{display:flex;justify-content:space-between;align-items:center;font-size:9px}.avatar{width:29px;height:29px;border-radius:50%;background:#b8c5a7;display:grid;place-items:center}.appHero{margin-top:30px}.appHero small{opacity:.45;font-size:10px}.appHero h3{font-size:37px;line-height:.9;letter-spacing:-.06em;margin:8px 0}.appHero h3 em{font-family:"Playfair Display";font-weight:500}.focus{margin-top:25px;background:#29332b;color:#f7f1e8;border-radius:18px;padding:16px}.focus b{font-size:12px}.focus p{font-size:9px;line-height:1.5;opacity:.65}.miniRow{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:9px}.mini{padding:14px;border-radius:15px;background:#ded8ca;font-size:9px}.mini strong{display:block;font-size:15px;margin-top:7px}.floatTag{position:absolute;right:0;bottom:14%;padding:16px 18px;border:1px solid #ffffff24;border-radius:16px;background:#191a17e8;backdrop-filter:blur(16px);font-size:10px;box-shadow:0 25px 60px #0008}.floatTag b{display:block;font-size:24px;margin-top:4px}
+.section{padding:10vw 7vw;border-top:1px solid #ffffff18}.head{display:flex;justify-content:space-between;gap:30px;margin-bottom:65px}.section h2{font-size:clamp(45px,6vw,92px);line-height:.9;letter-spacing:-.06em;font-weight:500;margin:0}.muted{max-width:350px;color:#8f8d87;font-size:12px;line-height:1.8}
+.experience{background:#e9e3d7;color:#161813;border-radius:40px 40px 0 0;padding:8vw 5vw}.expHead{display:flex;justify-content:space-between;align-items:end;margin-bottom:40px}.expHead h2{font-size:clamp(48px,7vw,100px);letter-spacing:-.07em;line-height:.85;margin:0}.expHead h2 em{font-family:"Playfair Display"}.launch{border:1px solid #161813;border-radius:99px;background:transparent;padding:14px 18px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:.3s}.launch:hover{background:#161813;color:#fff;transform:translateY(-3px)}
+.appWrap{min-height:760px;border-radius:30px;background:#d4d0c4;display:grid;place-items:center;overflow:hidden;position:relative}.appWrap:before{content:"";position:absolute;width:650px;height:650px;border-radius:50%;background:#aebda0;filter:blur(90px);opacity:.55}.demoPhone{position:relative;width:min(390px,80vw);height:720px;border:9px solid #242823;border-radius:48px;background:#070807;padding:8px;box-shadow:0 55px 120px #34382f55;z-index:2}.demoScreen{height:100%;border-radius:36px;overflow:hidden;background:#f2eee5;position:relative;color:#161813}.screenPage{position:absolute;inset:0;padding:38px 20px 20px;display:none;animation:pageIn .45s cubic-bezier(.2,.8,.2,1)}.screenPage.active{display:block}@keyframes pageIn{from{opacity:0;transform:translateX(25px)}to{opacity:1;transform:none}}.status{font-size:9px;display:flex;justify-content:space-between;opacity:.55}.pageTitle{font-size:34px;letter-spacing:-.06em;line-height:.9;margin:27px 0 20px}.pageTitle em{font-family:"Playfair Display"}.appCard{border-radius:19px;padding:18px;background:#29332b;color:#f7f1e8;margin:10px 0}.appCard.light{background:#ded8ca;color:#171814}.appCard h4{margin:0 0 7px;font-size:16px}.appCard p{font-size:9px;line-height:1.55;opacity:.65;margin:0}.appButton{width:100%;border:0;border-radius:99px;padding:13px;margin-top:8px;background:#e37b59;color:#fff;font-size:9px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer}.tiles{display:grid;grid-template-columns:1fr 1fr;gap:9px}.tile{background:#ded8ca;border-radius:16px;padding:14px;min-height:110px;cursor:pointer;transition:.3s}.tile:hover{transform:translateY(-5px);background:#cbd4bf}.tile b{font-size:10px}.tile span{display:block;font-size:8px;opacity:.5;margin-top:12px}.bottomNav{position:absolute;left:15px;right:15px;bottom:14px;height:52px;border-radius:18px;background:#171a16;color:#fff;display:grid;grid-template-columns:repeat(4,1fr);align-items:center;text-align:center;font-size:8px}.bottomNav button{border:0;background:none;color:inherit;opacity:.5;cursor:pointer;font:inherit}.bottomNav button.active{opacity:1}.toast{position:absolute;left:50%;bottom:80px;transform:translateX(-50%) translateY(20px);background:#171a16;color:#fff;border-radius:99px;padding:11px 16px;font-size:9px;opacity:0;pointer-events:none;transition:.35s;z-index:10;white-space:nowrap}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.note{margin-top:30px;text-align:center;color:#74716a;font-size:10px;letter-spacing:.08em}
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#ffffff18}.p{background:#151513;padding:30px;min-height:220px}.p span{font-size:10px;color:#777}.p h3{font-size:25px;margin:70px 0 10px}.p p{font-size:11px;line-height:1.7;color:#8d8a83}
+.cta{padding:12vw 7vw;text-align:center}.cta h2{font-size:clamp(55px,9vw,135px);line-height:.85;letter-spacing:-.075em;margin:0 0 45px}.cta h2 em{font-family:"Playfair Display"}.cta a{display:inline-flex;padding:16px 22px;border:1px solid #f4eee3;border-radius:99px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;transition:.3s}.cta a:hover{background:#f4eee3;color:#111}
+footer{padding:25px 7vw 40px;border-top:1px solid #ffffff18;color:#777;font-size:10px;letter-spacing:.12em;display:flex;justify-content:space-between}
+@media(max-width:850px){.hero{grid-template-columns:1fr}.phoneStage{height:560px}.phone{transform:scale(.88) rotate(4deg)}.head,.expHead{display:block}.launch{margin-top:25px}.principles{grid-template-columns:1fr}.appWrap{min-height:700px}.demoPhone{height:650px}}
+</style>
+</head>
+<body>
+<nav><div class="logo">ATELIER NORTH</div><a class="back" href="index.html#work">← BACK TO WORK</a></nav>
+
+<section class="hero">
+ <div>
+  <div class="k">02 / App Development</div>
+  <h1>Don't just<br>see the app.<br><span class="serif">Use it.</span></h1>
+  <p class="lead">A portfolio should prove the product. So Service 02 is not a gallery of screenshots — it's a small, working product experience you can actually touch.</p>
+ </div>
+ <div class="phoneStage">
+  <div class="glow"></div>
+  <div class="phone">
+   <div class="notch"></div>
+   <div class="screen">
+    <div class="appTop"><span>NOVA / 09:41</span><span class="avatar">N</span></div>
+    <div class="appHero"><small>GOOD MORNING</small><h3>Come back<br><em>to yourself.</em></h3></div>
+    <div class="focus"><b>Today's focus</b><p>8 minutes to reset your pace before the day starts.</p><div style="font-size:20px;margin-top:12px">08:00</div></div>
+    <div class="miniRow"><div class="mini">Movement<strong>24 min</strong></div><div class="mini">Mind<strong>12 min</strong></div></div>
+   </div>
+  </div>
+  <div class="floatTag"><span>LIVE PROTOTYPE</span><b>Tap to enter ↓</b></div>
+ </div>
+</section>
+
+<section class="section">
+ <div class="head"><h2>We build the<br><span class="serif">whole product.</span></h2><div class="muted">Strategy, experience, interface, motion and engineering are considered as one system — so the app feels coherent from its first tap.</div></div>
+ <div class="principles">
+  <div class="p"><span>01</span><h3>Understand</h3><p>We define the real user problem and the smallest useful product before adding complexity.</p></div>
+  <div class="p"><span>02</span><h3>Shape</h3><p>Flows and interactions turn the idea into something people can understand without instructions.</p></div>
+  <div class="p"><span>03</span><h3>Make</h3><p>We turn the approved experience into a responsive, scalable digital product.</p></div>
+ </div>
+</section>
+
+<section class="experience" id="experience">
+ <div class="expHead"><div><div class="k" style="color:#777">TRY THE SAMPLE</div><h2>Meet <em>NOVA.</em></h2></div><button class="launch" id="resetBtn">Reset experience ↗</button></div>
+ <div class="appWrap">
+  <div class="demoPhone">
+   <div class="notch"></div>
+   <div class="demoScreen">
+    <div class="screenPage active" data-page="home">
+      <div class="status"><span>NOVA / 09:41</span><span>●●●</span></div>
+      <div class="pageTitle">Good morning,<br><em>Riyaz.</em></div>
+      <div class="appCard"><h4>Your day, gently.</h4><p>A small plan built around your energy — not a rigid checklist.</p><button class="appButton" data-action="start">Start today's reset</button></div>
+      <div class="tiles"><div class="tile" data-go="discover"><b>Discover</b><span>Find a new ritual</span></div><div class="tile" data-go="progress"><b>Progress</b><span>See your rhythm</span></div></div>
+    </div>
+    <div class="screenPage" data-page="discover">
+      <div class="status"><span>NOVA / DISCOVER</span><span>09:41</span></div>
+      <div class="pageTitle">Find what<br><em>fits today.</em></div>
+      <div class="appCard light"><h4>Reset / 08 min</h4><p>Breath, stretch and a quiet minute. Designed for a busy morning.</p><button class="appButton" data-action="play">Try this ritual</button></div>
+      <div class="appCard light"><h4>Move / 24 min</h4><p>A low-friction movement session for when your body needs a change of pace.</p><button class="appButton" data-action="save">Save for later</button></div>
+    </div>
+    <div class="screenPage" data-page="progress">
+      <div class="status"><span>NOVA / PROGRESS</span><span>09:41</span></div>
+      <div class="pageTitle">Your rhythm,<br><em>not a score.</em></div>
+      <div class="appCard"><h4>12 day rhythm</h4><p>You showed up more consistently in the mornings this week.</p><div style="font-size:30px;margin-top:10px">72%</div></div>
+      <div class="appCard light"><h4>Small win</h4><p>You've completed 4 resets before 9am this week.</p></div>
+    </div>
+    <div class="screenPage" data-page="profile">
+      <div class="status"><span>NOVA / YOU</span><span>09:41</span></div>
+      <div class="pageTitle">Make it<br><em>yours.</em></div>
+      <div class="appCard light"><h4>Your pace</h4><p>Morning · Calm · 10–20 minutes</p></div>
+      <div class="appCard light"><h4>Notifications</h4><p>Gentle reminders · 8:30 AM</p></div>
+      <button class="appButton" data-action="toast">Save preferences</button>
+    </div>
+    <div class="toast" id="toast"></div>
+    <div class="bottomNav">
+      <button class="active" data-nav="home">Home</button><button data-nav="discover">Discover</button><button data-nav="progress">Progress</button><button data-nav="profile">You</button>
+    </div>
+   </div>
+  </div>
+ </div>
+ <div class="note">This is a concept product created by Atelier North to demonstrate app experience design.</div>
+</section>
+
+<section class="section">
+ <div class="head"><h2>Interaction is part<br>of the <span class="serif">product.</span></h2><div class="muted">Motion isn't decoration. It gives feedback, creates hierarchy and helps a digital product feel responsive and alive.</div></div>
+</section>
+
+<section class="cta">
+ <div class="k">02 / Build an app</div>
+ <h2>Have an idea<br>worth putting<br><em>in people's hands?</em></h2>
+ <a href="mailto:riyaz.csee@gmail.com?subject=Atelier%20North%20-%20App%20Development">Talk to Atelier North ↗</a>
+</section>
+<footer><span>ATELIER NORTH · HUMAN EXPERIENCES / INTELLIGENT TECHNOLOGY</span><span>02 — APP DEVELOPMENT</span></footer>
+
+<script>
+const pages=[...document.querySelectorAll('.screenPage')], nav=[...document.querySelectorAll('[data-nav]')], toast=document.getElementById('toast');
+function go(page){
+ pages.forEach(p=>p.classList.toggle('active',p.dataset.page===page));
+ nav.forEach(n=>n.classList.toggle('active',n.dataset.nav===page));
+}
+function notify(msg){toast.textContent=msg;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1700)}
+nav.forEach(n=>n.onclick=()=>go(n.dataset.nav));
+document.querySelectorAll('[data-go]').forEach(x=>x.onclick=()=>go(x.dataset.go));
+document.querySelectorAll('[data-action]').forEach(x=>x.onclick=()=>{
+ const a=x.dataset.action;
+ if(a==='start'){go('discover');notify('Your reset is ready.')}
+ if(a==='play'){notify('Ritual started · 08:00');}
+ if(a==='save'){notify('Saved to your rituals.');}
+ if(a==='toast'){notify('Preferences saved.');}
+});
+document.getElementById('resetBtn').onclick=()=>{go('home');notify('Experience reset.')}
+document.querySelector('.phoneStage').addEventListener('click',()=>document.getElementById('experience').scrollIntoView({behavior:'smooth'}));
+</script>
+</body>
+</html>

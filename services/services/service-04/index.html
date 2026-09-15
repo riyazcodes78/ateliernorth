@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Atelier North — Service 05 / Business OS</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap');
+:root{
+  --ink:#11100e; --paper:#fbfaf7; --cream:#f2eee6; --line:#ded8ce;
+  --gold:#c99735; --gold2:#f0c968; --orange:#ff633d; --coral:#ff8b63;
+  --violet:#7468ff; --mint:#75cbb4; --blue:#4e91ff; --muted:#777269;
+  --shadow:0 30px 80px rgba(29,24,16,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif;overflow-x:hidden}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+::selection{background:var(--gold2);color:#111}
+
+.progress{position:fixed;z-index:1000;top:0;left:0;width:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--orange),var(--violet))}
+.nav{
+ position:fixed;z-index:900;top:18px;left:50%;transform:translateX(-50%);
+ width:min(1220px,calc(100% - 28px));padding:11px 14px 11px 18px;
+ border:1px solid rgba(17,16,14,.11);border-radius:999px;background:rgba(255,255,255,.86);
+ backdrop-filter:blur(18px);display:flex;align-items:center;justify-content:space-between;
+ box-shadow:0 12px 35px rgba(25,20,12,.08)
+}
+.logo{font:800 12px "DM Mono";letter-spacing:.22em}
+.navlinks{display:flex;gap:18px;font:10px "DM Mono";color:#716c63}
+.navlinks a:hover{color:var(--orange)}
+.navpill{padding:10px 14px;border-radius:999px;background:#141310;color:#fff;font:10px "DM Mono"}
+
+.hero{
+ min-height:100vh;padding:150px 5vw 90px;position:relative;display:flex;align-items:center;
+ background:
+ radial-gradient(circle at 82% 16%,rgba(255,99,61,.14),transparent 23%),
+ radial-gradient(circle at 13% 78%,rgba(116,104,255,.12),transparent 25%),
+ linear-gradient(135deg,#fffdf9,#f5f0e8)
+}
+.hero:after{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(17,16,14,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(17,16,14,.035) 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(to bottom,transparent,black 20%,black 70%,transparent)}
+.heroIn{width:min(1240px,100%);margin:auto;position:relative;z-index:2}
+.heroKicker{font:10px "DM Mono";letter-spacing:.22em;color:var(--orange);margin-bottom:20px}
+.hero h1{font-size:clamp(64px,10vw,150px);line-height:.8;letter-spacing:-.085em;font-weight:500;margin:0;max-width:1000px}
+.hero h1 em{font-family:"Playfair Display";color:var(--orange)}
+.heroSub{display:flex;justify-content:space-between;align-items:end;gap:50px;margin-top:42px}
+.heroCopy{max-width:650px;font-size:19px;line-height:1.6;color:#615d55}
+.heroCopy strong{color:var(--ink)}
+.ctaRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.btn{border:0;border-radius:999px;padding:13px 18px;font-weight:800;background:#151411;color:#fff;transition:.25s;box-shadow:0 10px 25px rgba(17,16,14,.12)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 18px 38px rgba(17,16,14,.18)}
+.btn.gold{background:linear-gradient(110deg,var(--gold2),var(--orange));color:#18130e}
+.btn.light{background:#fff;color:#171612;border:1px solid var(--line);box-shadow:none}
+.heroStats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;min-width:390px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 14px 35px rgba(28,24,17,.07);transition:.3s}
+.stat:hover{transform:translateY(-6px) rotate(-1deg);border-color:var(--gold)}
+.stat b{display:block;font-size:28px;letter-spacing:-.06em}.stat span{font:9px "DM Mono";color:#858078}
+
+.definition{padding:80px 5vw;background:#11100e;color:#fff;overflow:hidden;position:relative}
+.definition:before{content:"NORTH";position:absolute;right:-3vw;top:-80px;font-size:25vw;font-weight:800;letter-spacing:-.1em;color:rgba(255,255,255,.025)}
+.definitionIn{max-width:1240px;margin:auto;position:relative}
+.eyebrow{font:10px "DM Mono";letter-spacing:.2em;color:#8b867e;text-transform:uppercase}
+.definition .eyebrow{color:var(--gold2)}
+.words{display:flex;flex-wrap:wrap;gap:10px 16px;margin:28px 0 12px;align-items:center}
+.word{font-size:clamp(28px,4vw,62px);letter-spacing:-.06em;line-height:1;color:#fff;transition:.35s}
+.word:hover{color:var(--gold2);transform:translateY(-7px) rotate(-2deg)}
+.x{font:18px "DM Mono";color:var(--orange)}
+.definition p{max-width:800px;color:#a8a39a;line-height:1.7;font-size:17px}
+
+.section{padding:115px 5vw}
+.wrap{max-width:1240px;margin:auto}
+.sectionHead{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:55px}
+.title{font-size:clamp(48px,7vw,92px);line-height:.88;letter-spacing:-.075em;margin:14px 0 0;font-weight:500}
+.lead{max-width:560px;color:#6e6a62;line-height:1.65;font-size:16px}
+
+.rail{display:flex;gap:12px;overflow:auto;padding:10px 3px 24px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.station{
+ min-width:220px;border:1px solid var(--line);border-radius:25px;padding:20px;background:#fff;
+ transition:.35s cubic-bezier(.2,.8,.2,1);position:relative;overflow:hidden
+}
+.station:before{content:"";position:absolute;width:130px;height:130px;right:-45px;top:-45px;border-radius:50%;background:var(--accent);opacity:.13;transition:.35s}
+.station:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:var(--accent)}
+.station:hover:before{transform:scale(1.6)}
+.station.active{border-color:var(--accent);box-shadow:0 18px 55px rgba(30,25,15,.11)}
+.station .num{font:10px "DM Mono";color:#77736b}.station h3{font-size:25px;letter-spacing:-.05em;margin:25px 0 7px}.station p{font-size:12px;line-height:1.5;color:#777269}.station button{margin-top:15px;background:#11100e;color:#fff;border:0;border-radius:999px;padding:9px 12px;font:10px "DM Mono"}
+
+.stage{
+ margin-top:18px;border:1px solid #24211d;border-radius:34px;background:#11100e;color:#fff;
+ min-height:680px;box-shadow:0 35px 100px rgba(17,16,14,.2);overflow:hidden;position:relative
+}
+.stageTop{height:65px;padding:0 22px;border-bottom:1px solid #302c27;display:flex;align-items:center;justify-content:space-between}
+.dots{display:flex;gap:7px}.dots i{width:8px;height:8px;border-radius:50%;background:#575149}
+.live{font:10px "DM Mono";color:var(--gold2)}
+.stagePanel{display:none;padding:30px;animation:panelIn .5s both}.stagePanel.active{display:block}
+.panelGrid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+.card{border:1px solid #302c27;border-radius:23px;background:#171512;padding:20px;transition:.3s}
+.card:hover{transform:translateY(-4px);border-color:#6a6257}
+.card h3{margin:0 0 7px;font-size:27px;letter-spacing:-.05em}.card p{color:#989188;font-size:13px;line-height:1.55}
+.field{width:100%;padding:13px 14px;background:#11100e;border:1px solid #3a352e;border-radius:13px;color:#fff;outline:0;margin-top:8px}
+.field:focus{border-color:var(--gold)}
+.smallbtn{border:0;border-radius:999px;padding:10px 13px;background:var(--gold2);color:#17130e;font-weight:800}.smallbtn.orange{background:var(--orange);color:#fff}.smallbtn.dark{background:#29251f;color:#fff;border:1px solid #464038}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.metricBig{font-size:54px;letter-spacing:-.08em;margin:18px 0 2px}.muted{color:#858078;font-size:12px}
+.list{display:grid;gap:8px;margin-top:15px}.listItem{display:flex;justify-content:space-between;gap:15px;padding:13px;border-radius:15px;background:#11100e;border:1px solid #2b2823;font-size:12px}.badge{padding:5px 8px;border-radius:999px;font:9px "DM Mono";background:#27231d;color:var(--gold2)}.badge.orange{color:#fff;background:rgba(255,99,61,.18)}
+.spark{height:130px;display:flex;align-items:end;gap:7px;margin-top:20px}.spark i{flex:1;border-radius:8px 8px 2px 2px;background:linear-gradient(180deg,var(--gold2),var(--orange));animation:bars 1.2s ease both}
+.table{width:100%;border-collapse:collapse;font-size:12px}.table th,.table td{text-align:left;padding:12px 7px;border-bottom:1px solid #302c27}.table th{font:9px "DM Mono";color:#777269}
+
+.kioskGrid{display:grid;grid-template-columns:1.3fr .7fr;gap:16px}.products{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.prod{border:1px solid #322e28;background:#171512;border-radius:20px;padding:17px;transition:.3s;cursor:pointer}.prod:hover{transform:translateY(-7px) rotate(-1deg);border-color:var(--gold)}.prodIcon{font-size:30px}.prod b{display:block;margin-top:12px}.prod small{color:#8c867d}.price{margin-top:10px;color:var(--gold2);font-weight:800}
+.cart{background:#fbfaf7;color:#111;border-radius:23px;padding:20px}.cartLine{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #dcd6cc;font-size:12px}.cartTotal{font-size:34px;letter-spacing:-.06em;margin:15px 0}
+
+.workflow{display:flex;gap:10px;overflow:auto;padding:8px 0 20px}.node{min-width:170px;padding:17px;border-radius:18px;background:#171512;border:1px solid #322e28}.node strong{display:block;font-size:13px}.node span{display:block;margin-top:7px;color:#8c867d;font-size:11px}.arrow{color:var(--orange);font-size:24px;align-self:center}
+.chat{height:370px;overflow:auto;border:1px solid #332f29;border-radius:20px;padding:15px;background:#0e0d0b}.msg{max-width:78%;padding:11px 13px;border-radius:15px;margin:7px 0;font-size:13px;line-height:1.5}.ai{background:#211e19}.me{background:linear-gradient(110deg,var(--gold2),var(--orange));color:#16120e;margin-left:auto}.chatbar{display:flex;gap:8px;margin-top:10px}.chatbar .field{margin:0}
+
+.booking{display:grid;grid-template-columns:1fr 1fr;gap:16px}.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}.slot{border:1px solid #39342e;background:#11100e;color:#fff;padding:12px;border-radius:13px}.slot:hover,.slot.selected{border-color:var(--gold2);background:#29231a}
+.invoice{background:#fff;color:#111;border-radius:24px;padding:25px;min-height:360px}.invoiceTop{display:flex;justify-content:space-between}.invoice h2{font-size:35px;letter-spacing:-.06em;margin:12px 0}.invoiceLine{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #ded8ce;font-size:12px}.invoiceTotal{font-size:28px;text-align:right;margin-top:15px}.payButtons{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+
+.inventory{display:grid;grid-template-columns:1fr 1fr;gap:16px}.stockRow{padding:15px;border:1px solid #342f28;border-radius:17px;background:#11100e}.stockHead{display:flex;justify-content:space-between}.meter{height:8px;background:#2a2620;border-radius:99px;margin-top:12px;overflow:hidden}.meter i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--mint),var(--gold2),var(--orange))}
+
+.modalBack{position:fixed;inset:0;background:rgba(10,9,8,.58);backdrop-filter:blur(9px);z-index:2000;display:none;place-items:center;padding:20px}.modalBack.open{display:grid}
+.modal{width:min(520px,100%);background:#fbfaf7;color:#111;border-radius:28px;padding:24px;box-shadow:0 35px 100px rgba(0,0,0,.35);animation:modalIn .35s both}.modalHead{display:flex;justify-content:space-between;align-items:start}.close{border:0;background:#ece7dd;border-radius:50%;width:38px;height:38px}.upiBox{border:1px dashed #c9c0b4;border-radius:20px;padding:20px;margin:18px 0;text-align:center}.fakeQR{width:190px;height:190px;margin:15px auto;background:
+repeating-conic-gradient(#111 0 25%,#fff 0 50%) 50%/18px 18px;position:relative;border:10px solid #fff;box-shadow:0 8px 25px rgba(0,0,0,.1)}
+.fakeQR:after{content:"N";position:absolute;inset:65px;background:#ff633d;color:#fff;border-radius:13px;display:grid;place-items:center;font-weight:800;font-size:28px}
+.payState{padding:12px;border-radius:14px;background:#e9f5e8;color:#246328;font-size:12px;display:none}.payState.show{display:block}
+
+.footer{padding:100px 5vw 45px;background:#11100e;color:#fff}.footerIn{max-width:1240px;margin:auto}.footer h2{font-size:clamp(50px,7vw,100px);line-height:.85;letter-spacing:-.08em;font-weight:500;margin:18px 0 40px}.footer h2 em{font-family:"Playfair Display";color:var(--orange)}.footerBottom{display:flex;justify-content:space-between;gap:20px;border-top:1px solid #302c27;padding-top:22px;color:#8d887f;font:10px "DM Mono"}
+
+.reveal{opacity:0;transform:translateY(35px);transition:.9s cubic-bezier(.2,.8,.2,1)}.reveal.show{opacity:1;transform:none}
+@keyframes panelIn{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes modalIn{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes bars{from{height:0}to{height:var(--h)}}
+@media(max-width:900px){
+ .navlinks{display:none}.heroSub{flex-direction:column;align-items:start}.heroStats{min-width:0;width:100%}
+ .sectionHead{flex-direction:column;align-items:start}.panelGrid,.kioskGrid,.booking,.inventory{grid-template-columns:1fr}.products{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:560px){
+ .hero{padding-top:125px}.hero h1{font-size:18vw}.heroStats{grid-template-columns:1fr}.section{padding:80px 5vw}.stagePanel{padding:18px}.products{grid-template-columns:1fr 1fr}.slots{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<nav class="nav">
+  <div class="logo">ATELIER NORTH</div>
+  <div class="navlinks">
+    <a href="#experience">EXPERIENCE</a><a href="#systems">SYSTEM</a><a href="#ai">NORTH AI</a><a href="#contact">BUILD</a>
+  </div>
+  <a class="navpill" href="#systems">ENTER OS ↘</a>
+</nav>
+
+<header class="hero">
+  <div class="heroIn reveal">
+    <div class="heroKicker">SERVICE 05 · BUSINESS OPERATING SYSTEM</div>
+    <h1>Don't show the<br><em>service.</em><br>Let them <span style="color:var(--violet)">use it.</span></h1>
+    <div class="heroSub">
+      <div class="heroCopy">
+        A premium interactive demonstration of what Atelier North can build:
+        <strong>CRM, kiosk, billing, UPI checkout, bookings, inventory, analytics and AI</strong> — all behaving like one connected business.
+        <div class="ctaRow"><a class="btn gold" href="#systems">EXPLORE THE BUSINESS ↘</a><a class="btn light" href="#ai">TALK TO NORTH AI</a></div>
+      </div>
+      <div class="heroStats">
+        <div class="stat"><b>08+</b><span>CONNECTED SYSTEMS</span></div>
+        <div class="stat"><b>01</b><span>INTERACTIVE EXPERIENCE</span></div>
+        <div class="stat"><b>∞</b><span>ROOM TO AUTOMATE</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="definition" id="experience">
+  <div class="definitionIn reveal">
+    <div class="eyebrow">THE NORTH WAY</div>
+    <div class="words">
+      <span class="word">HUMAN</span><span class="x">×</span><span class="word">INTELLIGENT</span>
+      <span class="x">×</span><span class="word">CONNECTED</span><span class="x">×</span><span class="word">PRECISE</span>
+      <span class="x">×</span><span class="word">BUILT TO MOVE</span>
+    </div>
+    <p>We don't make a collection of pages. We design digital systems where every click has a purpose, every action changes something, and the interface makes the business feel alive.</p>
+  </div>
+</section>
+
+<section class="section" id="systems">
+  <div class="wrap">
+    <div class="sectionHead reveal">
+      <div><div class="eyebrow">ONE CONNECTED BUSINESS</div><div class="title">Pick a world.<br>Then break it.</div></div>
+      <p class="lead">This is intentionally not a normal side-by-side services grid. Pick a station, enter its live stage, interact with it, then jump into another system. The goal is to make a prospect feel the product before we ever pitch it.</p>
+    </div>
+
+    <div class="rail reveal" id="rail">
+      <div class="station active" style="--accent:var(--orange)" data-panel="crm"><span class="num">01 / RELATIONSHIPS</span><h3>CRM</h3><p>Capture leads, change their stage and create a follow-up.</p><button>OPEN CRM ↗</button></div>
+      <div class="station" style="--accent:var(--gold)" data-panel="kiosk"><span class="num">02 / CUSTOMER FLOW</span><h3>KIOSK</h3><p>Let a customer browse, build a cart and hit checkout.</p><button>OPEN KIOSK ↗</button></div>
+      <div class="station" style="--accent:var(--mint)" data-panel="billing"><span class="num">03 / MONEY</span><h3>BILLING</h3><p>Build an invoice and launch a designed payment flow.</p><button>OPEN BILLING ↗</button></div>
+      <div class="station" style="--accent:var(--blue)" data-panel="booking"><span class="num">04 / TIME</span><h3>BOOKINGS</h3><p>Select a live-looking slot and confirm the appointment.</p><button>OPEN BOOKINGS ↗</button></div>
+      <div class="station" style="--accent:var(--violet)" data-panel="inventory"><span class="num">05 / OPERATIONS</span><h3>INVENTORY</h3><p>Watch stock levels and trigger a restock action.</p><button>OPEN INVENTORY ↗</button></div>
+      <div class="station" style="--accent:var(--orange)" data-panel="analytics"><span class="num">06 / DECISIONS</span><h3>ANALYTICS</h3><p>Turn activity into a visual business signal.</p><button>OPEN ANALYTICS ↗</button></div>
+      <div class="station" style="--accent:var(--gold)" data-panel="ai"><span class="num">07 / INTELLIGENCE</span><h3>NORTH AI</h3><p>Ask what to do next and get an instant operating answer.</p><button>OPEN AI ↗</button></div>
+    </div>
+
+    <div class="stage reveal">
+      <div class="stageTop"><div class="dots"><i></i><i></i><i></i></div><div id="stageName">CRM / LIVE DEMO</div><div class="live">● INTERACTIVE</div></div>
+
+      <div class="stagePanel active" id="crm">
+        <div class="panelGrid">
+          <div class="card">
+            <div class="eyebrow">LEAD COMMAND</div><h3>Who needs attention?</h3>
+            <p>Add a lead, move its stage and create a next action. Everything updates inside this demo.</p>
+            <div class="row">
+              <input class="field" id="leadName" placeholder="Lead name" style="flex:1;min-width:160px">
+              <select class="field" id="leadStage" style="flex:1;min-width:160px">
+                <option>New</option><option>Qualified</option><option>Proposal</option>
+              </select>
+              <button class="smallbtn" onclick="addLead()">+ ADD LEAD</button>
+            </div>
+            <div class="list" id="leadList">
+              <div class="listItem"><span>Northline Studio<br><span class="muted">₹42,000 opportunity</span></span><span class="badge orange">FOLLOW UP</span></div>
+              <div class="listItem"><span>Monarch Foods<br><span class="muted">₹18,500 opportunity</span></span><span class="badge">PROPOSAL</span></div>
+              <div class="listItem"><span>Studio M<br><span class="muted">₹31,000 opportunity</span></span><span class="badge">QUALIFIED</span></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="eyebrow">PIPELINE</div><div class="metricBig" id="leadCount">14</div><div class="muted">active leads</div>
+            <div class="spark"><i style="--h:34%;height:34%"></i><i style="--h:52%;height:52%"></i><i style="--h:45%;height:45%"></i><i style="--h:68%;height:68%"></i><i style="--h:61%;height:61%"></i><i style="--h:82%;height:82%"></i><i style="--h:94%;height:94%"></i></div>
+            <button class="smallbtn orange" onclick="crmAction()">CREATE FOLLOW-UP ↗</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="stagePanel" id="kiosk">
+        <div class="kioskGrid">
+          <div class="card"><div class="eyebrow">SELF-SERVICE</div><h3>Build an order.</h3><p>Tap products like a real customer-facing kiosk. The cart on the right updates instantly.</p>
+            <div class="products">
+              <div class="prod" onclick="addCart('Signature Bowl',420)"><div class="prodIcon">🥗</div><b>Signature Bowl</b><small>Fresh / house special</small><div class="price">₹420</div></div>
+              <div class="prod" onclick="addCart('Citrus Cooler',180)"><div class="prodIcon">🍊</div><b>Citrus Cooler</b><small>Cold / sparkling</small><div class="price">₹180</div></div>
+              <div class="prod" onclick="addCart('North Dessert',260)"><div class="prodIcon">🍰</div><b>North Dessert</b><small>Chef selection</small><div class="price">₹260</div></div>
+              <div class="prod" onclick="addCart('Coffee Lab',210)"><div class="prodIcon">☕</div><b>Coffee Lab</b><small>Single origin</small><div class="price">₹210</div></div>
+              <div class="prod" onclick="addCart('Lunch Box',560)"><div class="prodIcon">🍱</div><b>Lunch Box</b><small>Complete meal</small><div class="price">₹560</div></div>
+              <div class="prod" onclick="addCart('Gift Card',1000)"><div class="prodIcon">🎁</div><b>Gift Card</b><small>Digital / instant</small><div class="price">₹1,000</div></div>
+            </div>
+          </div>
+          <div class="cart"><div class="eyebrow">YOUR CART</div><h3 style="margin:8px 0">Ready when you are.</h3><div id="cartLines"><div class="muted">Tap a product to begin.</div></div><div class="cartTotal" id="cartTotal">₹0</div><div class="row"><button class="smallbtn" onclick="openPayment()">PAY & CHECKOUT ↗</button><button class="smallbtn dark" onclick="clearCart()">RESET</button></div></div>
+        </div>
+      </div>
+
+      <div class="stagePanel" id="billing">
+        <div class="panelGrid">
+          <div class="invoice">
+            <div class="invoiceTop"><span class="eyebrow">ATELIER NORTH / INVOICE</span><span class="badge" style="color:#111;background:#eee7db">DRAFT</span></div>
+            <h2>INV-2048</h2>
+            <div class="muted">Client: Northline Studio · 15 Sep 2026</div>
+            <div class="invoiceLine"><span>Website system</span><b>₹35,000</b></div>
+            <div class="invoiceLine"><span>AI automation</span><b>₹12,000</b></div>
+            <div class="invoiceLine"><span>Support / setup</span><b>₹2,560</b></div>
+            <div class="invoiceTotal">₹49,560</div>
+            <div class="payButtons"><button class="smallbtn orange" onclick="openInvoicePayment()">PAY ₹49,560 ↗</button><button class="smallbtn dark" style="color:#111;background:#eee7db" onclick="makeInvoice()">CREATE PDF</button></div>
+          </div>
+          <div class="card">
+            <div class="eyebrow">BILLING AUTOMATION</div><h3>From invoice to paid.</h3>
+            <p>Imagine this connected to Razorpay/Stripe, GST invoicing, email or WhatsApp delivery. The portfolio demonstrates the workflow before production integration.</p>
+            <div class="workflow"><div class="node"><strong>01 / INVOICE</strong><span>Generated</span></div><div class="arrow">→</div><div class="node"><strong>02 / PAYMENT</strong><span>UPI / Card / Link</span></div><div class="arrow">→</div><div class="node"><strong>03 / RECEIPT</strong><span>Auto delivered</span></div></div>
+            <button class="smallbtn" onclick="toast('Payment link generated · ready to share')">GENERATE PAYMENT LINK ↗</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="stagePanel" id="booking">
+        <div class="booking">
+          <div class="card"><div class="eyebrow">SMART BOOKING</div><h3>Pick a time.</h3><p>Choose a service and a slot. The confirmation behaves like a real booking product.</p>
+            <select class="field" id="serviceSelect"><option>Consultation · 30 min</option><option>Demo · 45 min</option><option>Strategy Session · 60 min</option></select>
+            <div class="slots" id="slots">
+              <button class="slot" onclick="selectSlot(this)">10:00</button><button class="slot" onclick="selectSlot(this)">10:30</button><button class="slot" onclick="selectSlot(this)">11:00</button><button class="slot" onclick="selectSlot(this)">12:30</button><button class="slot" onclick="selectSlot(this)">14:00</button><button class="slot" onclick="selectSlot(this)">16:30</button>
+            </div>
+            <button class="smallbtn" style="margin-top:14px" onclick="bookSlot()">CONFIRM BOOKING ↗</button>
+          </div>
+          <div class="card"><div class="eyebrow">AUTOMATION</div><h3>Booked ≠ finished.</h3><p>After confirmation, the system can trigger reminders, collect forms, update CRM and send follow-ups automatically.</p>
+            <div class="workflow"><div class="node"><strong>BOOKED</strong><span>Calendar updated</span></div><div class="arrow">→</div><div class="node"><strong>REMINDER</strong><span>24h before</span></div><div class="arrow">→</div><div class="node"><strong>FOLLOW-UP</strong><span>After meeting</span></div></div>
+            <div class="payState show" id="bookState">● Ready for a booking.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stagePanel" id="inventory">
+        <div class="inventory">
+          <div class="card"><div class="eyebrow">LIVE STOCK</div><h3>Know before it breaks.</h3>
+            <div class="stockRow"><div class="stockHead"><span>Signature Bowl Kits</span><b id="stock1">18</b></div><div class="meter"><i id="meter1" style="width:36%"></i></div></div>
+            <div class="stockRow" style="margin-top:9px"><div class="stockHead"><span>Citrus Base</span><b id="stock2">07</b></div><div class="meter"><i id="meter2" style="width:18%"></i></div></div>
+            <div class="stockRow" style="margin-top:9px"><div class="stockHead"><span>Gift Cards</span><b id="stock3">64</b></div><div class="meter"><i id="meter3" style="width:78%"></i></div></div>
+            <button class="smallbtn orange" style="margin-top:14px" onclick="restock()">TRIGGER RESTOCK ↗</button>
+          </div>
+          <div class="card"><div class="eyebrow">RULE ENGINE</div><h3>Business reacts.</h3><p>Set a threshold and the system can automatically create a purchase request, alert a manager or update a dashboard.</p>
+            <div class="list"><div class="listItem"><span>IF Citrus Base &lt; 10</span><span class="badge orange">TRIGGERED</span></div><div class="listItem"><span>THEN create purchase order</span><span class="badge">READY</span></div><div class="listItem"><span>AND notify operations</span><span class="badge">READY</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stagePanel" id="analytics">
+        <div class="panelGrid">
+          <div class="card"><div class="eyebrow">NORTH SIGNAL</div><h3>What is happening?</h3><div class="metricBig">₹84,240</div><div class="muted">processed value today</div><div class="spark"><i style="height:30%"></i><i style="height:43%"></i><i style="height:37%"></i><i style="height:56%"></i><i style="height:61%"></i><i style="height:75%"></i><i style="height:91%"></i><i style="height:82%"></i><i style="height:100%"></i></div></div>
+          <div class="card"><div class="eyebrow">DECISION LAYER</div><h3>Don't just show data.</h3><p>Ask the system what deserves attention. Analytics becomes an action surface instead of a collection of charts.</p><button class="smallbtn" onclick="generateInsight()">GENERATE BUSINESS INSIGHT ↗</button><div class="payState" style="margin-top:15px" id="insightState"></div></div>
+        </div>
+      </div>
+
+      <div class="stagePanel" id="ai">
+        <div class="panelGrid">
+          <div class="card"><div class="eyebrow">NORTH AI / OPERATIONS</div><h3>Ask the business.</h3><p>This demo responds to common operating questions. Later, connect it to your production AI endpoint, database, CRM and automation tools.</p>
+            <div class="chat" id="chat"><div class="msg ai">I'm North. Ask me things like <b>“what should I follow up today?”</b>, <b>“what is low in inventory?”</b>, <b>“how much was billed?”</b> or <b>“what should I do next?”</b></div></div>
+            <div class="chatbar"><input class="field" id="chatInput" placeholder="Ask North something..." onkeydown="if(event.key==='Enter')askAI()"><button class="smallbtn orange" onclick="askAI()">SEND ↗</button></div>
+          </div>
+          <div class="card"><div class="eyebrow">CONNECTED INTELLIGENCE</div><h3>One brain. Many actions.</h3>
+            <div class="workflow"><div class="node"><strong>CRM</strong><span>Leads</span></div><div class="arrow">↔</div><div class="node"><strong>BILLING</strong><span>Payments</span></div><div class="arrow">↔</div><div class="node"><strong>OPS</strong><span>Stock / booking</span></div></div>
+            <button class="smallbtn" onclick="toast('North AI can be connected to a real API in production')">CONNECT REAL API ↗</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:#f1ece3">
+  <div class="wrap reveal">
+    <div class="sectionHead">
+      <div><div class="eyebrow">THE DIFFERENCE</div><div class="title">A portfolio that<br>behaves like a product.</div></div>
+      <p class="lead">Every interaction is designed to answer one question for a potential client: <strong>“Can Atelier North actually build this?”</strong> They don't need to imagine it. They can click it.</p>
+    </div>
+    <div class="rail">
+      <div class="station" style="--accent:var(--orange)"><span class="num">ACTION</span><h3>Tap</h3><p>Buttons change state, lists update and workflows progress.</p></div>
+      <div class="station" style="--accent:var(--gold)"><span class="num">TRANSACTION</span><h3>Pay</h3><p>Checkout opens a designed UPI-style payment experience.</p></div>
+      <div class="station" style="--accent:var(--violet)"><span class="num">INTELLIGENCE</span><h3>Ask</h3><p>North AI responds to operational questions in context.</p></div>
+      <div class="station" style="--accent:var(--mint)"><span class="num">AUTOMATION</span><h3>Trigger</h3><p>Restock, booking, follow-up and billing actions have visible outcomes.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="contact">
+  <div class="footerIn reveal">
+    <div class="eyebrow" style="color:var(--gold2)">ATELIER NORTH / SERVICE 05</div>
+    <h2>Build the layer<br>behind the <em>business.</em></h2>
+    <div class="ctaRow"><a class="btn gold" href="mailto:riyaz.csee@gmail.com">START A CONVERSATION ↗</a><a class="btn light" style="background:#1b1915;color:#fff;border-color:#3a352d" href="tel:+919080292231">+91 90802 92231</a></div>
+    <div class="footerBottom"><span>HUMAN EXPERIENCES · INTELLIGENT TECHNOLOGY</span><span>© 2026 ATELIER NORTH</span></div>
+  </div>
+</footer>
+
+<div class="modalBack" id="payModal">
+  <div class="modal">
+    <div class="modalHead"><div><div class="eyebrow" style="color:var(--orange)">NORTH CHECKOUT / DEMO</div><h2 style="font-size:36px;letter-spacing:-.06em;margin:8px 0">Complete payment.</h2><div class="muted" id="payAmount">Amount: ₹0</div></div><button class="close" onclick="closePayment()">×</button></div>
+    <div class="upiBox">
+      <div class="muted">SCAN / PAY WITH UPI</div>
+      <div class="fakeQR"></div>
+      <b>atelier.north@upi</b>
+      <div class="row" style="justify-content:center;margin-top:14px"><button class="smallbtn orange" onclick="simulatePay()">SIMULATE SUCCESS ↗</button><button class="smallbtn dark" onclick="copyUPI()">COPY UPI ID</button></div>
+      <div class="payState" id="payState" style="margin-top:15px">✓ Payment successful — receipt generated.</div>
+    </div>
+    <p class="muted">Production version can replace this demo with Razorpay/Stripe/UPI intent, payment verification and automatic receipt delivery.</p>
+  </div>
+</div>
+
+<div class="modalBack" id="toastModal"></div>
+<div id="toast" style="position:fixed;z-index:3000;right:22px;bottom:22px;background:#11100e;color:#fff;border:1px solid #3a352d;border-radius:14px;padding:13px 16px;font-size:12px;opacity:0;transform:translateY(15px);pointer-events:none;transition:.3s"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const $$=s=>document.querySelectorAll(s);
+
+function toast(t){
+ const el=$('#toast');el.textContent=t;el.style.opacity='1';el.style.transform='none';
+ clearTimeout(window._toast);window._toast=setTimeout(()=>{el.style.opacity='0';el.style.transform='translateY(15px)'},2200);
+}
+
+const names={crm:'CRM / LIVE DEMO',kiosk:'KIOSK / LIVE DEMO',billing:'BILLING / LIVE DEMO',booking:'BOOKINGS / LIVE DEMO',inventory:'INVENTORY / LIVE DEMO',analytics:'ANALYTICS / LIVE DEMO',ai:'NORTH AI / LIVE DEMO'};
+function openPanel(id){
+ $$('.station').forEach(x=>x.classList.toggle('active',x.dataset.panel===id));
+ $$('.stagePanel').forEach(x=>x.classList.toggle('active',x.id===id));
+ $('#stageName').textContent=names[id];
+ document.querySelector('.stage').scrollIntoView({behavior:'smooth',block:'center'});
+}
+$$('.station').forEach(s=>s.addEventListener('click',e=>{if(e.target.tagName!=='BUTTON')openPanel(s.dataset.panel);else openPanel(s.dataset.panel)}));
+
+let cart=[];
+function addCart(name,price){
+ const x=cart.find(i=>i.name===name);if(x)x.qty++;else cart.push({name,price,qty:1});
+ renderCart();toast(name+' added to kiosk');
+}
+function renderCart(){
+ const el=$('#cartLines'),total=cart.reduce((s,i)=>s+i.price*i.qty,0);
+ el.innerHTML=cart.length?cart.map(i=>`<div class="cartLine"><span>${i.name} × ${i.qty}</span><b>₹${(i.price*i.qty).toLocaleString('en-IN')}</b></div>`).join(''):'<div class="muted">Tap a product to begin.</div>';
+ $('#cartTotal').textContent='₹'+total.toLocaleString('en-IN');
+}
+function clearCart(){cart=[];renderCart();toast('Cart reset')}
+function openPayment(){
+ if(!cart.length)return toast('Add something to the cart first');
+ $('#payAmount').textContent='Amount: '+$('#cartTotal').textContent;
+ $('#payModal').classList.add('open');$('#payState').classList.remove('show');
+}
+function openInvoicePayment(){ $('#payAmount').textContent='Amount: ₹49,560';$('#payModal').classList.add('open');$('#payState').classList.remove('show') }
+function closePayment(){$('#payModal').classList.remove('open')}
+function simulatePay(){$('#payState').classList.add('show');toast('Payment verified · receipt ready')}
+function copyUPI(){navigator.clipboard?.writeText('atelier.north@upi');toast('UPI ID copied')}
+$('#payModal').addEventListener('click',e=>{if(e.target.id==='payModal')closePayment()});
+
+function addLead(){
+ const name=$('#leadName').value.trim()||'New enquiry';
+ const stage=$('#leadStage').value;
+ const row=document.createElement('div');row.className='listItem';
+ row.innerHTML=`<span>${name}<br><span class="muted">New opportunity</span></span><span class="badge">${stage.toUpperCase()}</span>`;
+ $('#leadList').prepend(row);$('#leadCount').textContent=+$('#leadCount').textContent+1;$('#leadName').value='';
+ toast('Lead added to CRM');
+}
+function crmAction(){toast('Follow-up created · next action queued')}
+function makeInvoice(){toast('Demo invoice prepared for PDF export')}
+let selectedSlot='';
+function selectSlot(el){$$('.slot').forEach(x=>x.classList.remove('selected'));el.classList.add('selected');selectedSlot=el.textContent}
+function bookSlot(){
+ if(!selectedSlot)return toast('Choose a time first');
+ $('#bookState').textContent='✓ '+selectedSlot+' booked · confirmation ready';$('#bookState').style.color='#246328';toast('Booking confirmed for '+selectedSlot)
+}
+function restock(){
+ $('#stock2').textContent='27';$('#meter2').style.width='54%';toast('Restock request created · operations notified')
+}
+function generateInsight(){
+ const s=$('#insightState');s.textContent='North signal: follow up with Northline Studio first — highest open value and recent engagement.';s.classList.add('show');toast('Business insight generated')
+}
+function askAI(){
+ const inp=$('#chatInput'),q=inp.value.trim();if(!q)return;
+ const chat=$('#chat');const safe=q.replace(/[<>]/g,'');
+ chat.innerHTML+=`<div class="msg me">${safe}</div>`;inp.value='';chat.scrollTop=chat.scrollHeight;
+ let a='I can help you operate this demo. Try asking about leads, billing, bookings, inventory, or the next best action.';
+ const s=q.toLowerCase();
+ if(s.includes('lead')||s.includes('follow'))a='Priority: Northline Studio. It has ₹42,000 open value and is marked for follow-up. I would create the next touchpoint now.';
+ else if(s.includes('inventory')||s.includes('stock'))a='Citrus Base is below threshold at 7 units. I recommend triggering a restock request and notifying operations.';
+ else if(s.includes('bill')||s.includes('invoice')||s.includes('payment'))a='INV-2048 is ready at ₹49,560. The payment flow can use UPI, card or a shareable payment link in production.';
+ else if(s.includes('book')||s.includes('appointment'))a='The next available demo slots shown are 10:00, 10:30 and 11:00. Pick one and confirm the booking.';
+ else if(s.includes('next')||s.includes('should'))a='My next three actions: follow up Northline Studio, restock Citrus Base, then review today’s ₹84,240 processed value.';
+ setTimeout(()=>{chat.innerHTML+=`<div class="msg ai">${a}</div>`;chat.scrollTop=chat.scrollHeight},350);
+}
+$$('.reveal').forEach(x=>new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.1}).observe(x));
+window.addEventListener('scroll',()=>{const h=document.documentElement;$('#progress').style.width=((h.scrollTop/(h.scrollHeight-h.clientHeight))*100)+'%'});
+</script>
+</body>
+</html>

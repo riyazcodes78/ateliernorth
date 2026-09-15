@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Service 01 — The Digital Front Door · Atelier North</title>
+<meta name="description" content="Atelier North — Service 01: premium website experiences built around people, not templates.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;1,500&display=swap');
+:root{--ink:#1c211d;--paper:#eee9df;--sage:#9aaa83;--moss:#425344;--coral:#e86e55;--cream:#f6f1e8;--line:rgba(28,33,29,.16)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}button{font:inherit}.micro{font-size:9px;letter-spacing:.25em;text-transform:uppercase;opacity:.58}
+.topline{position:fixed;top:0;left:0;width:100%;height:3px;background:rgba(28,33,29,.08);z-index:1000}.topline i{display:block;width:0;height:100%;background:var(--coral)}
+nav{position:fixed;top:18px;left:24px;right:24px;z-index:900;display:flex;justify-content:space-between;align-items:center;font-size:9px;letter-spacing:.22em;text-transform:uppercase;mix-blend-mode:multiply}
+.nav-left{display:flex;gap:12px;align-items:center}.back{padding:11px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(246,241,232,.7);backdrop-filter:blur(12px);transition:.4s}.back:hover{transform:translateX(-4px);background:var(--cream)}
+.nav-right{padding:11px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(246,241,232,.7);backdrop-filter:blur(12px)}
+.hero{min-height:100svh;padding:150px 6vw 7vw;position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:5vw;align-items:center;overflow:hidden;background:radial-gradient(circle at 75% 30%,#c8d3bb 0 9%,transparent 32%),linear-gradient(135deg,#eee9df,#e4e1d6 54%,#d7dfcf)}
+.hero:before{content:"";position:absolute;width:65vw;height:65vw;border:1px solid rgba(66,83,68,.15);border-radius:50%;right:-25vw;top:-22vw}.hero-copy{position:relative;z-index:3}.hero h1{font:300 clamp(72px,10.5vw,165px)/.82 Manrope;letter-spacing:-.08em;margin:22px 0}.hero h1 em{font:500 clamp(78px,11vw,170px)/.8 "Playfair Display",serif;color:var(--coral)}
+.hero-lead{max-width:520px;font-size:14px;line-height:1.8;opacity:.68}.hero-meta{display:flex;gap:30px;margin-top:44px;flex-wrap:wrap}.meta{font-size:10px;letter-spacing:.12em;text-transform:uppercase}.meta strong{display:block;font-size:11px;letter-spacing:.02em;text-transform:none;margin-top:7px;font-weight:500}
+.hero-visual{position:relative;height:min(670px,72vh);min-height:520px;perspective:1200px}.device{position:absolute;right:5%;top:4%;width:min(470px,78%);height:92%;border-radius:34px;background:#111814;box-shadow:0 55px 120px rgba(28,33,29,.26);padding:11px;transform:rotate(5deg);transition:transform 1s cubic-bezier(.16,1,.3,1)}.device:hover{transform:rotate(1deg) translateY(-14px) scale(1.02)}.screen{height:100%;border-radius:25px;overflow:hidden;position:relative;background:#dce5d5}.screen img{width:100%;height:100%;object-fit:cover;transition:1.2s}.device:hover img{transform:scale(1.05)}.screen-ui{position:absolute;inset:0;padding:24px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(180deg,rgba(10,20,13,.08),rgba(10,20,13,.5));color:#fff}.screen-ui h3{font:300 52px/.9 Manrope;letter-spacing:-.07em;margin:0}.screen-ui h3 em{font-family:"Playfair Display";font-style:italic}.pill{align-self:flex-start;padding:9px 12px;border:1px solid rgba(255,255,255,.55);border-radius:99px;font-size:8px;letter-spacing:.18em;text-transform:uppercase}.float-card{position:absolute;left:-2%;bottom:11%;width:190px;padding:20px;border-radius:20px;background:rgba(246,241,232,.88);backdrop-filter:blur(18px);box-shadow:0 30px 80px rgba(28,33,29,.18);transform:rotate(-7deg);transition:.6s}.float-card:hover{transform:rotate(-2deg) translateY(-10px)}.float-card b{font:300 38px Manrope;letter-spacing:-.08em}.float-card p{font-size:10px;line-height:1.6;opacity:.6;margin:8px 0 0}
+.statement{background:var(--moss);color:#f4f0e6;padding:11vw 7vw;display:grid;grid-template-columns:.35fr 1fr;gap:7vw;align-items:start}.statement h2{font:300 clamp(58px,8vw,125px)/.82 Manrope;letter-spacing:-.08em;margin:0}.statement h2 em{font-family:"Playfair Display";font-style:italic;color:#d5dfc7}.statement p{max-width:500px;font-size:14px;line-height:1.9;opacity:.68}.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(244,240,230,.15);margin-top:55px}.principle{padding:25px;background:var(--moss);min-height:160px}.principle span{font-size:9px;letter-spacing:.2em;opacity:.55}.principle h3{font:400 25px Manrope;letter-spacing:-.04em;margin:35px 0 8px}.principle p{font-size:11px;line-height:1.7;margin:0;opacity:.55}
+.experience{padding:12vw 6vw;background:var(--cream)}.experience-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:80px}.experience h2{font:300 clamp(65px,9vw,140px)/.75 Manrope;letter-spacing:-.09em;margin:14px 0}.experience-head p{max-width:330px;font-size:11px;line-height:1.8;opacity:.58}.journey{display:grid;grid-template-columns:1.15fr .85fr;gap:8vw;align-items:start}.journey-visual{position:sticky;top:100px;height:72vh;min-height:520px;border-radius:28px;overflow:hidden;background:#cad6c0;box-shadow:0 35px 100px rgba(28,33,29,.14)}.journey-visual img{width:100%;height:100%;object-fit:cover;transition:1s}.journey-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(10,20,13,.55))}.journey-label{position:absolute;left:28px;bottom:28px;z-index:2;color:white}.journey-label b{display:block;font:300 36px Manrope;letter-spacing:-.06em}.steps{display:flex;flex-direction:column;gap:16px}.step{border-top:1px solid var(--line);padding:27px 0;display:grid;grid-template-columns:70px 1fr;gap:25px;cursor:pointer;transition:.5s}.step:hover{padding-left:14px}.step-num{font-size:10px;letter-spacing:.18em;opacity:.4}.step h3{font:400 31px Manrope;letter-spacing:-.06em;margin:0 0 9px}.step p{font-size:11px;line-height:1.75;opacity:.55;max-width:430px;margin:0}.step-arrow{font-size:24px;opacity:.25;transition:.4s}.step:hover .step-arrow{opacity:1;transform:translateX(8px)}
+.interaction{background:#171b18;color:#f5f0e6;padding:12vw 6vw;position:relative;overflow:hidden}.interaction:before{content:"";position:absolute;width:50vw;height:50vw;border-radius:50%;right:-22vw;top:-15vw;background:radial-gradient(circle,#738767,transparent 65%);opacity:.3}.interaction-head{position:relative;z-index:2;max-width:850px}.interaction h2{font:300 clamp(65px,10vw,150px)/.75 Manrope;letter-spacing:-.09em;margin:15px 0}.interaction h2 em{font-family:"Playfair Display";font-style:italic;color:#e86e55}.interaction p{max-width:520px;font-size:13px;line-height:1.9;opacity:.58}.demo{position:relative;z-index:2;margin-top:80px;border:1px solid rgba(245,240,230,.18);border-radius:28px;min-height:430px;padding:25px;display:grid;grid-template-columns:1fr 1fr;gap:20px;overflow:hidden;background:rgba(255,255,255,.035)}.demo-copy{padding:40px}.demo-copy .micro{opacity:.45}.demo-copy h3{font:300 52px/.9 Manrope;letter-spacing:-.07em;margin:35px 0}.demo-copy h3 em{font-family:"Playfair Display";color:#e86e55}.demo-btn{border:1px solid rgba(245,240,230,.3);background:transparent;color:#fff;border-radius:99px;padding:13px 18px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:.4s}.demo-btn:hover{background:#f5f0e6;color:#171b18;transform:translateY(-3px)}
+.demo-orbit{position:relative;display:grid;place-items:center}.orbit-core{width:180px;height:180px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#e6eddc,#6e8065 60%,#2c362d);box-shadow:0 0 90px rgba(154,170,131,.3);font:400 13px Manrope;letter-spacing:.1em;text-transform:uppercase}.orbit-ring{position:absolute;width:320px;height:210px;border:1px solid rgba(245,240,230,.22);border-radius:50%;animation:spin 13s linear infinite}.orbit-ring.r2{width:390px;height:150px;transform:rotate(58deg);animation-duration:18s;animation-direction:reverse}.orbit-dot{position:absolute;width:12px;height:12px;border-radius:50%;background:#e86e55;box-shadow:0 0 0 8px rgba(232,110,85,.1)}@keyframes spin{to{transform:rotate(360deg)}}
+.proof{padding:12vw 6vw;background:#e8e1d5}.proof-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;align-items:end}.proof-card{overflow:hidden;border-radius:22px;position:relative;box-shadow:0 25px 70px rgba(28,33,29,.12);background:#ddd}.proof-card img{width:100%;height:100%;object-fit:cover;transition:1s}.proof-card:hover img{transform:scale(1.08) rotate(1deg)}.p1{grid-column:1/6;height:58vh}.p2{grid-column:6/10;height:38vh;margin-bottom:10vh}.p3{grid-column:10/13;height:50vh}.proof-caption{position:absolute;left:20px;bottom:18px;color:#fff;z-index:2;text-shadow:0 2px 20px #000}.proof-card:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 45%,rgba(0,0,0,.5))}
+.cta{min-height:80vh;background:var(--coral);color:#191816;padding:12vw 7vw;display:flex;align-items:center;justify-content:space-between;gap:40px}.cta h2{font:300 clamp(75px,12vw,180px)/.72 Manrope;letter-spacing:-.1em;margin:0}.cta h2 em{font-family:"Playfair Display";font-style:italic}.cta-right{max-width:300px}.cta-right p{font-size:12px;line-height:1.8;opacity:.65}.cta-link{display:inline-flex;margin-top:20px;padding:15px 19px;border-radius:999px;border:1px solid rgba(25,24,22,.35);font-size:9px;letter-spacing:.2em;text-transform:uppercase;transition:.4s}.cta-link:hover{background:#191816;color:#f5f0e6;transform:translateY(-5px)}
+footer{padding:24px 6vw;background:#191816;color:#f5f0e6;display:flex;justify-content:space-between;font-size:9px;letter-spacing:.18em;text-transform:uppercase}
+.reveal{opacity:0;transform:translateY(35px);transition:1s cubic-bezier(.16,1,.3,1)}.reveal.show{opacity:1;transform:none}
+.cursor{position:fixed;width:18px;height:18px;border:1px solid rgba(28,33,29,.55);border-radius:50%;pointer-events:none;z-index:2000;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s;mix-blend-mode:multiply}.cursor.big{width:70px;height:70px;background:rgba(232,110,85,.12);border-color:rgba(232,110,85,.6)}
+@media(max-width:850px){nav{left:14px;right:14px}.hero{grid-template-columns:1fr;padding-top:130px}.hero-visual{height:560px}.device{right:2%;width:72%}.float-card{left:0}.statement{grid-template-columns:1fr}.principles{grid-template-columns:1fr}.journey{grid-template-columns:1fr}.journey-visual{position:relative;top:auto;height:60vh}.demo{grid-template-columns:1fr}.proof-grid{display:grid;grid-template-columns:1fr}.p1,.p2,.p3{grid-column:auto;margin:0;height:55vh}.cta{display:block}.cta-right{margin-top:60px}}
+</style>
+</head>
+<body>
+<div class="topline"><i id="progress"></i></div>
+<nav>
+  <div class="nav-left"><a class="back" href="index.html#work">← Atelier North</a><span class="micro">01 / Website Experience</span></div>
+  <div class="nav-right">Concept 01 · Digital Front Door</div>
+</nav>
+<main>
+<section class="hero">
+  <div class="hero-copy reveal">
+    <div class="micro">Atelier North · Service 01</div>
+    <h1>The<br>digital<br><em>front door.</em></h1>
+    <p class="hero-lead">A website shouldn't feel like a brochure placed on a screen. It should feel like the first moment someone meets the business — with a point of view, a rhythm and a reason to stay.</p>
+    <div class="hero-meta">
+      <div class="meta">Role<strong>Experience · Design · Build</strong></div>
+      <div class="meta">Built for<strong>Brands with something to say</strong></div>
+      <div class="meta">Approach<strong>Human taste × machine speed</strong></div>
+    </div>
+  </div>
+  <div class="hero-visual reveal">
+    <div class="device">
+      <div class="screen">
+        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=90" alt="Calm wellness interior">
+        <div class="screen-ui">
+          <span class="pill">A concept experience</span>
+          <div><h3>Come back<br><em>to yourself.</em></h3><div class="micro" style="margin-top:18px;color:#fff;opacity:.75">Wellness · Movement · Ritual</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="float-card"><span class="micro">The feeling</span><b>01:07</b><p>Seven seconds to create curiosity. The rest is earned through the experience.</p></div>
+  </div>
+</section>
+
+<section class="statement">
+  <div class="micro reveal">The principle</div>
+  <div class="reveal">
+    <h2>Technology<br>moves fast.<br><em>People don't.</em></h2>
+    <p>We use AI to accelerate exploration, production and iteration. But the final layer is deliberately human — the images, the pauses, the colour, the words and the tiny decisions that make a digital experience feel like it belongs to a real business.</p>
+    <div class="principles">
+      <div class="principle"><span>01</span><h3>Character</h3><p>No default visual language. We find the personality before we find the components.</p></div>
+      <div class="principle"><span>02</span><h3>Movement</h3><p>Motion has a purpose: guiding attention, revealing context and making the interface feel alive.</p></div>
+      <div class="principle"><span>03</span><h3>Conversion</h3><p>The beautiful part still has a job — making the next step feel obvious and natural.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="experience">
+  <div class="experience-head reveal">
+    <div><div class="micro">02 · The journey</div><h2>Not pages.<br><em>Moments.</em></h2></div>
+    <p>One continuous experience from first impression to action. The interface changes its pace depending on what the visitor needs to understand next.</p>
+  </div>
+  <div class="journey">
+    <div class="journey-visual reveal">
+      <img id="journeyImg" src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1400&q=90" alt="Person moving through a wellness experience">
+      <div class="journey-label"><span class="micro">Experience state</span><b id="journeyTitle">Arrive.</b></div>
+    </div>
+    <div class="steps reveal">
+      <div class="step" data-img="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=1400&q=90" data-title="Arrive."><span class="step-num">01</span><div><h3>Arrive with a feeling.</h3><p>The opening doesn't dump information. It establishes the atmosphere first, then gives the visitor a clear invitation.</p></div><span class="step-arrow">↗</span></div>
+      <div class="step" data-img="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1400&q=90" data-title="Explore."><span class="step-num">02</span><div><h3>Explore without effort.</h3><p>Services, proof and story appear when they're useful — not because a navigation menu says they have to.</p></div><span class="step-arrow">↗</span></div>
+      <div class="step" data-img="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1400&q=90" data-title="Trust."><span class="step-num">03</span><div><h3>Let trust build naturally.</h3><p>Real people, real places, real evidence. We use visual honesty to make the brand feel present rather than polished into anonymity.</p></div><span class="step-arrow">↗</span></div>
+      <div class="step" data-img="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1400&q=90" data-title="Begin."><span class="step-num">04</span><div><h3>Make the next step easy.</h3><p>Book, enquire, buy or start a conversation without the experience suddenly becoming a form factory.</p></div><span class="step-arrow">↗</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="interaction">
+  <div class="interaction-head reveal">
+    <div class="micro">03 · Interaction study</div>
+    <h2>A site that<br><em>responds.</em></h2>
+    <p>Small signals create a sense of presence. Hover, scroll, reveal and motion are designed as part of the story — not sprinkled on afterwards.</p>
+  </div>
+  <div class="demo reveal">
+    <div class="demo-copy">
+      <div class="micro">Try the interaction</div>
+      <h3>What should<br>the visitor <em>feel?</em></h3>
+      <p style="font-size:11px;line-height:1.8;opacity:.5;max-width:330px">Move your cursor around the experience. The system follows your attention, while the visual language stays calm.</p>
+      <button class="demo-btn" id="moodBtn">Change the mood ↗</button>
+    </div>
+    <div class="demo-orbit" id="orbit">
+      <div class="orbit-ring"></div><div class="orbit-ring r2"></div><div class="orbit-core" id="orbitCore">Human first</div><div class="orbit-dot" id="orbitDot"></div>
+    </div>
+  </div>
+</section>
+
+<section class="proof">
+  <div class="experience-head reveal">
+    <div><div class="micro">04 · Visual direction</div><h2>Real things.<br><em>Real texture.</em></h2></div>
+    <p>Photography, materials and imperfections give the interface somewhere human to land. Stock can be a starting point; the final world should feel owned.</p>
+  </div>
+  <div class="proof-grid">
+    <div class="proof-card p1 reveal"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1400&q=90" alt="Wellness treatment detail"><div class="proof-caption"><span class="micro">Touch · Texture</span><br>Quiet details matter.</div></div>
+    <div class="proof-card p2 reveal"><img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1100&q=90" alt="Movement and fitness"><div class="proof-caption"><span class="micro">Body · Motion</span><br>Movement becomes visual language.</div></div>
+    <div class="proof-card p3 reveal"><img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=1100&q=90" alt="Calm wellness environment"><div class="proof-caption"><span class="micro">Space · Atmosphere</span><br>Let the place speak.</div></div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="reveal"><div class="micro">05 · Build one</div><h2>Give your<br>business a<br><em>front door.</em></h2></div>
+  <div class="cta-right reveal"><p>This is Service 01 in the Atelier North portfolio. The next nine experiences will explore apps, AI, automation, product design and the rest of our digital studio.</p><a class="cta-link" href="index.html#work">Back to Atelier North ↗</a></div>
+</section>
+</main>
+<footer><span>Atelier North · Service 01</span><span>Human taste × intelligent technology</span></footer>
+<div class="cursor" id="cursor"></div>
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(x=>io.observe(x));
+const progress=document.getElementById('progress');
+addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;progress.style.width=(scrollY/h*100)+'%'},{passive:true});
+const cursor=document.getElementById('cursor');
+addEventListener('pointermove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'});
+document.querySelectorAll('a,button,.step,.device,.proof-card').forEach(el=>{el.addEventListener('mouseenter',()=>cursor.classList.add('big'));el.addEventListener('mouseleave',()=>cursor.classList.remove('big'))});
+const img=document.getElementById('journeyImg'), title=document.getElementById('journeyTitle');
+document.querySelectorAll('.step').forEach(step=>{
+ step.addEventListener('mouseenter',()=>{img.style.opacity='.2';setTimeout(()=>{img.src=step.dataset.img;title.textContent=step.dataset.title;img.style.opacity='1'},180)});
+});
+const orbit=document.getElementById('orbit'), dot=document.getElementById('orbitDot');
+orbit.addEventListener('pointermove',e=>{const r=orbit.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;dot.style.transform=`translate(${x*180}px,${y*120}px)`});
+const mood=['Human first','Warmth','Curiosity','Confidence','Human first'];let mi=0;
+document.getElementById('moodBtn').onclick=()=>{mi=(mi+1)%mood.length;document.getElementById('orbitCore').textContent=mood[mi]};
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+ATELIER NORTH — CONCEPT 05 / NORTH AI FIXED
+
+FIXES
+- Removed the old Ask / Explore suggestion section completely.
+- Removed the old separate AI showcase section.
+- North now opens from the fixed NORTH AI button with a real modal conversation interface.
+- The frontend calls /api/north; when the included server is running and an API key is configured, the conversation uses a real OpenAI model.
+- Added a floating WhatsApp button for +91 90802 92231.
+- Work cards now have different shapes, hover rotations, image zooms and interaction behaviour instead of looking like one repeated card.
+- Founder photo/contact information from the previous locked build remains included.
+
+REAL AI SETUP
+1. Install Node.js 20+.
+2. Open this folder in Terminal.
+3. Run: npm install
+4. Copy .env.example to .env
+5. Add your OpenAI API key.
+6. Run: npm start
+7. Open http://localhost:3000
+
+The API key stays server-side. Do not put it into index.html.

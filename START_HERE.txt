@@ -1,0 +1,15 @@
+ATELIER NORTH — NORTH AI LIVE READY
+
+DO THIS:
+1. Extract the ZIP.
+2. Double-click START_ATELIER_NORTH.bat.
+3. On first run, paste your OpenAI API key when asked.
+4. Keep the black terminal window open.
+5. The browser opens automatically at http://localhost:3000.
+6. Open NORTH AI. The status will say LIVE only when the server and API key are actually connected.
+
+IMPORTANT:
+Opening index.html directly with file:// will NOT connect to North's backend.
+North needs the local server running.
+
+The API key is stored only in the local .env file created by the launcher.
